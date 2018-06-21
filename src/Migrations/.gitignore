@@ -1,0 +1,29 @@
+$this->addSql('INSERT INTO TABLE league  (`name`) VALUES
+            (\'Premier League\'),
+            (\'English Football League Championship\'),
+            (\'English Football League One\'),
+            (\'English Football League Two\'),
+            (\'National League\'),
+            (\'National League North\'),
+            (\'National League South\'),
+            (\'Football League Cup\')
+        ');
+        $strips = ['black', 'red', 'blue', 'brown', 'yellow', 'white'];
+        $this->addSql('INSERT INTO TABLE team  (`name`, `strip`) VALUES
+            (\'Arsenal\', \''.array_rand($strips).'\'),
+            (\'Bournemouth\', \''.array_rand($strips).'\'),
+            (\'Brighton\', \''.array_rand($strips).'\'),
+            (\'Burnley\', \''.array_rand($strips).'\'),
+            (\'Cardiff\', \''.array_rand($strips).'\'),
+            (\'Chelsea\', \''.array_rand($strips).'\'),
+            (\'Crystal Palace\', \''.array_rand($strips).'\'),
+            (\'Everton\', \''.array_rand($strips).'\'),
+            (\'Fulham\', \''.array_rand($strips).'\'),
+            (\'Huddersfield\', \''.array_rand($strips).'\'),
+        ');
+
+        $this->addSql('INSERT INTO team_leagues(`team_id`, `league_id`)
+            SELECT t.id
+            FROM team t
+            LEFT JOIN league l ON l.name = \'Premier League\'
+        ');
